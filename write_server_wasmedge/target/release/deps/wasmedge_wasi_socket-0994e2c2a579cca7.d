@@ -1,0 +1,10 @@
+/home/sasakura/programs/write_server_wasmedge/target/release/deps/wasmedge_wasi_socket-0994e2c2a579cca7.rmeta: /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/lib.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/poll.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/socket.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/wasi_poll.rs
+
+/home/sasakura/programs/write_server_wasmedge/target/release/deps/libwasmedge_wasi_socket-0994e2c2a579cca7.rlib: /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/lib.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/poll.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/socket.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/wasi_poll.rs
+
+/home/sasakura/programs/write_server_wasmedge/target/release/deps/wasmedge_wasi_socket-0994e2c2a579cca7.d: /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/lib.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/poll.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/socket.rs /home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/wasi_poll.rs
+
+/home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/lib.rs:
+/home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/poll.rs:
+/home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/socket.rs:
+/home/sasakura/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasmedge_wasi_socket-0.5.1/src/wasi_poll.rs:
