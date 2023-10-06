@@ -1,1 +1,1 @@
-/home/sasakura/programs/receiver/target/debug/receiver: /home/sasakura/programs/receiver/src/main.rs
+/home/sasakura/git/practice/practice/receiver/target/debug/receiver: /home/sasakura/git/practice/practice/receiver/src/main.rs
