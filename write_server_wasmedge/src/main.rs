@@ -16,12 +16,6 @@ fn main() -> io::Result<()> {
     }
 }
 
-// fn recv_msg(stream: &mut TcpStream) -> Result<(), std::io::Error> {
-//     let mut buf: [u8; 2048] = [0; 2048];
-//     stream.read_exact(&mut buf)?;
-//     Ok(())
-// }
-
 fn send_msg(stream: &mut TcpStream) -> Result<(), std::io::Error> {
     let mut msg = "Send Message";
     let mut buf = [0u8; 1024];
