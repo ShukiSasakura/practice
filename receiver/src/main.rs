@@ -1,6 +1,6 @@
 use std::net::{ToSocketAddrs, TcpListener, TcpStream};
 use std::io::Read;
-use std::str;
+// use std::str;
 
 fn main() {
     let host_and_port = "localhost:5555";
@@ -16,14 +16,22 @@ fn main() {
             println!("Failed connect");
         }
         Ok(mut stream) => {
-            println!("connect");
-            for i in 0..256 {
-                let mut buf: Vec<u8> = vec![0];
-                // buf.resize(1024, 0);
+            let mut i: u32 = 0;
+            // println!("connect");
+            loop {
+                // let mut buf: Vec<u8> = vec![0];
+                let mut buf: [u8; 1] = [0];
                 let _ = stream.read_exact(&mut buf);
-                // buf.truncate("Send Message".as_bytes().len());
-                // let msg = String::from_utf8(buf).unwrap();
-                println!("Receive message {}: {:?}", i, buf);
+                // if (i % 1000000) == 0 {
+                    println!("Receive message {}: {:?}", i, buf[0]);
+                    // println!("{}",buf[0]);
+                // }
+                if (i % 256) != buf[0].into() {
+                    // println!("Receive message {}: {:?}", i, buf[0]);
+                    // println!("Error-----------------------------------");
+                    break;
+                }
+                i += 1;
             }
         }
     }
