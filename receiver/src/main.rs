@@ -1,6 +1,5 @@
-use std::net::{ToSocketAddrs, TcpListener, TcpStream};
+use std::net::{ToSocketAddrs, TcpStream};
 use std::io::Read;
-// use std::str;
 
 fn main() {
     let host_and_port = "localhost:5555";
@@ -16,22 +15,18 @@ fn main() {
             println!("Failed connect");
         }
         Ok(mut stream) => {
-            let mut i: u32 = 0;
-            // println!("connect");
-            loop {
-                // let mut buf: Vec<u8> = vec![0];
-                let mut buf: [u8; 1] = [0];
-                let _ = stream.read_exact(&mut buf);
-                // if (i % 1000000) == 0 {
+            for i in 0.. {
+                let mut buf: [u8; 1024] = [1; 1024];
+                let _ = stream.read_exact(&mut buf[..]).map_err(|e| {println!("{:?}, {:?}", e, buf.len()); e});
+                if (i % 1000) == 0 {
+                    println!("Receive message {}: {:?}", i, buf);
+                    println!("{}",buf[0]);
+                }
+                if let Some((index, value)) = buf.iter().enumerate().find(|(_, &x)| x as usize != i % 256) {
+                    println!("Error position:{}, {}, {}", i, index, value);
                     println!("Receive message {}: {:?}", i, buf[0]);
-                    // println!("{}",buf[0]);
-                // }
-                if (i % 256) != buf[0].into() {
-                    // println!("Receive message {}: {:?}", i, buf[0]);
-                    // println!("Error-----------------------------------");
                     break;
                 }
-                i += 1;
             }
         }
     }
