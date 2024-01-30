@@ -1,4 +1,4 @@
-use std::io::Write;
+use std::io::{Read, Write};
 use std::net::TcpStream;
 
 fn main() -> std::io::Result<()> {
@@ -7,8 +7,10 @@ fn main() -> std::io::Result<()> {
         Err(e) => return Err(e)
     };
 
-    let buf = [1; 1024];
+    let mut buf = [1; 1024];
     let _ = stream.write(& buf);
+    let _ = stream.read(&mut buf);
+    println!("read msg: {:?}", buf);
 
     Ok(())
 }
