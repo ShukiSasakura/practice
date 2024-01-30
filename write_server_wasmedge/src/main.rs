@@ -3,10 +3,13 @@ use std::io::Read;
 use std::io::Write;
 use std::thread;
 use std::time;
+// use std::net::{ToSocketAddrs, TcpListener, TcpStream};
 use wasmedge_wasi_socket::{ToSocketAddrs, TcpListener, TcpStream};
 
 fn main() -> io::Result<()> {
+    // if wasmedge_wasi_socket then bind nonblocking flag is false
     let listener = TcpListener::bind("127.0.0.1:5555", false).unwrap();
+    //if wasmedge_wasi_socket then accept nonblocking flag is true
     let mut stream  = match listener.accept(true) {
         Ok((stream, _)) => stream ,
         Err(e) => return Err(e)
