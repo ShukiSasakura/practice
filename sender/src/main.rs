@@ -10,15 +10,13 @@ fn main() -> std::io::Result<()> {
     let mut buf = [1; 1024];
 
     for i in 1..=100000 {
-        if i != 100000 {
-            let _ = stream.write(& buf);
-        } else {
+        if i == 100000 {
             buf[0] = 2;
-            let _ = stream.write(& buf);
         }
+        let _ = stream.write(& buf);
     }
 
-    for i in 1..=100000 {
+    for _ in 1..=100000 {
         let _ = stream.read(&mut buf);
     }
 
