@@ -1,15 +1,21 @@
 use std::io::{Read, Write};
 use std::io::stdout;
 // native, Wasmtime, Wasmer
-use std::net::{TcpListener, TcpStream};
+use std::net::TcpListener;
 // Wasmedge
 // use wasmedge_wasi_socket::TcpListener;
 use std::time::Instant;
 
 fn main() -> std::io::Result<()> {
+    let mut recv_timers:Vec<u64> = Vec::with_capacity(100000);
+    let mut send_timers:Vec<u64> = Vec::with_capacity(100000);
+    for _ in 1..=100000 {
+        recv_timers.push(0);
+        send_timers.push(0);
+    }
+    recv_timers.clear();
+    send_timers.clear();
     let start_time = Instant::now();
-    let mut recv_timers:Vec<u64> = Vec::new();
-    let mut send_timers:Vec<u64> = Vec::new();
     let listener = TcpListener::bind("127.0.0.1:8080")?;
     // let listener = TcpListener::bind("127.0.0.1:8080", false)?;
     // let _ = listener.set_nonblocking(true);
@@ -22,35 +28,27 @@ fn main() -> std::io::Result<()> {
     // println!("start loop");
     loop {
         let _ = stream.read_exact(&mut buf);
-        match buf[0] {
-            1 => {
-                // println!("pattern 1");
-                append_time(&mut recv_timers, start_time);
-            },
-            2 => {
-                // println!("pattern 2");
-                append_time(&mut recv_timers, start_time);
-                writeln!(stdout(), "receive times");
-                recv_timers.iter()
-                      .enumerate()
-                      .for_each(|(_, record)| writeln!(stdout(), "{}", record).unwrap());
-                      break;
-            },
-            _ =>{},
+        append_time(&mut recv_timers, start_time);
+        if buf[0] == 2 {
+            let _ = writeln!(stdout(), "receive times");
+            recv_timers.iter()
+                .enumerate()
+                .for_each(|(_, record)| println!("{}", record));
+            break;
         }
     }
 
     buf[0] = 3;
 
-    for i in 1..=100000 {
+    for _ in 1..=100000 {
         let _ = stream.write_all(&buf);
         append_time(&mut send_timers, start_time);
     }
 
-    writeln!(stdout(), "send times");
+    let _ = writeln!(stdout(), "send times");
     send_timers.iter()
                .enumerate()
-               .for_each(|(_, record)| writeln!(stdout(), "{}", record).unwrap());
+               .for_each(|(_, record)| println!("{}", record));
 
     Ok(())
 }
