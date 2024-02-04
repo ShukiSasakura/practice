@@ -30,10 +30,6 @@ fn main() -> std::io::Result<()> {
         let _ = stream.read_exact(&mut buf);
         append_time(&mut recv_timers, start_time);
         if buf[0] == 2 {
-            let _ = writeln!(stdout(), "receive times");
-            recv_timers.iter()
-                .enumerate()
-                .for_each(|(_, record)| println!("{}", record));
             break;
         }
     }
@@ -44,6 +40,11 @@ fn main() -> std::io::Result<()> {
         let _ = stream.write_all(&buf);
         append_time(&mut send_timers, start_time);
     }
+
+    let _ = writeln!(stdout(), "receive times");
+    recv_timers.iter()
+        .enumerate()
+        .for_each(|(_, record)| println!("{}", record));
 
     let _ = writeln!(stdout(), "send times");
     send_timers.iter()
