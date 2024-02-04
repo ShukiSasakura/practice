@@ -7,9 +7,11 @@ use std::net::TcpListener;
 use std::time::Instant;
 
 fn main() -> std::io::Result<()> {
-    let mut recv_timers:Vec<u64> = Vec::with_capacity(100000);
-    let mut send_timers:Vec<u64> = Vec::with_capacity(100000);
-    for _ in 1..=100000 {
+    const NUM_MESSAGES:usize = 100000;
+    const SIZE_MESSAGES:usize = 1024;
+    let mut recv_timers:Vec<u64> = Vec::with_capacity(NUM_MESSAGES);
+    let mut send_timers:Vec<u64> = Vec::with_capacity(NUM_MESSAGES);
+    for _ in 1..=NUM_MESSAGES {
         recv_timers.push(0);
         send_timers.push(0);
     }
@@ -24,7 +26,7 @@ fn main() -> std::io::Result<()> {
         Ok((stream, _)) => stream,
         Err(e) => return Err(e)
     };
-    let mut buf: [u8; 1024] = [0; 1024];
+    let mut buf: [u8; SIZE_MESSAGES] = [0; SIZE_MESSAGES];
     // println!("start loop");
     loop {
         let _ = stream.read_exact(&mut buf);
@@ -36,7 +38,7 @@ fn main() -> std::io::Result<()> {
 
     buf[0] = 3;
 
-    for _ in 1..=100000 {
+    for _ in 1..=NUM_MESSAGES {
         let _ = stream.write_all(&buf);
         append_time(&mut send_timers, start_time);
     }
