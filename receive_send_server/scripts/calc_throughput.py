@@ -19,7 +19,7 @@ whole_tsc = (df.iloc[-1]["send times"] - df.iloc[0]["receive times"]) / 10000000
 
 recv_throughput = num_messages / recv_tsc
 send_throughput = num_messages / send_tsc
-throughput = (num_messages * 2) / whole_tsc
+throughput = num_messages / whole_tsc
 
 print(f'recv_throughput: {recv_throughput}')
 print(f'send_throughput: {send_throughput}')
