@@ -8,8 +8,8 @@ import datetime
 
 message_size = [1, 2, 4]
 throughputs = {
-    'Native': (1166830, 1019634, 760514),
-    'Wasm': (395837, 369317, 340573),
+    'NativeTcp': (583415, 509817, 380257),
+    'WasmTcp': (197919, 184659, 170287),
 }
 #native_throughput = [1166830, 1019634, 760514]
 #wasmedge_throughput = [395837, 369317, 340573]
@@ -32,7 +32,7 @@ ax.set_xlabel('Message Size (KB)')
 ax.set_ylabel('Throughput (msgs/s)')
 ax.set_xticks(x + (width / 2), message_size)
 ax.legend(loc='upper right', ncols=2)
-ax.set_ylim(0, 1500000)
+ax.set_ylim(0, max(throughputs['NativeTcp']) * 1.1)
 plt.ticklabel_format(style='plain',axis='y')
 
 
